@@ -1,0 +1,337 @@
+// Colors
+$color-cyan: rgb(102 226 220);
+$color-orange: rgb(250 116 83);
+$color-yellow: rgb(255 185 100);
+$color-white: rgb(252 250 249);
+$color-slate: rgb(25 24 38);
+
+// Typography
+@import url("https://api.fonts.coollabs.io/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap");
+
+$font-sizes: 5.5rem 4rem 2.5rem 1.25rem 1.125rem 1rem;
+
+@function font-size($index) {
+  @return nth($font-sizes, $index);
+}
+
+// Spacing
+$spacings: 8px 16px 20px 24px 32px 40px 48px 56px 64px 80px 128px 200px;
+
+@function spacing($index) {
+  @return nth($spacings, $index);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "IBM Plex Sans", serif;
+  color: $color-slate;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+p {
+  line-height: 150%;
+}
+
+.header {
+  padding: spacing(9) spacing(3) 180px;
+  background: url("../assets/images/bg-main-mobile.png");
+  background-repeat: no-repeat;
+  background-position: right -220px top -200px;
+  .hero {
+    &__pattern {
+      width: 0;
+    }
+    &__title {
+      font-size: font-size(3);
+      line-height: 100%;
+      letter-spacing: -1px;
+      margin-block-start: spacing(9);
+      margin-block-end: spacing(6);
+    }
+  }
+}
+
+.illustration {
+  background-color: $color-slate;
+  background-image: url("../assets/images/bg-pattern-2.svg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  position: relative;
+  min-height: 380px;
+  &__image {
+    max-width: 210px;
+    position: absolute;
+    top: -110px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+}
+
+.cta {
+  padding: spacing(7) spacing(3);
+  background-color: $color-orange;
+  &__title {
+    font-size: font-size(3);
+    font-weight: 700;
+    line-height: 110%;
+    margin-block-end: spacing(4);
+  }
+  &__description {
+    margin-block-end: spacing(6);
+  }
+  &__price {
+    font-size: font-size(4);
+    display: flex;
+    align-items: center;
+    gap: spacing(2);
+    margin-block-end: spacing(7);
+  }
+  &__price-value {
+    font-size: font-size(2);
+    font-weight: 700;
+    line-height: 110%;
+  }
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: spacing(1);
+    text-decoration: none;
+    padding: spacing(2) spacing(5);
+    border-radius: 12px;
+    text-align: center;
+    font-size: font-size(5);
+    font-weight: 700;
+    line-height: 180%;
+    &--dark {
+      background-color: $color-slate;
+      color: $color-white;
+      margin-block-end: spacing(2);
+    }
+    &--light {
+      background-color: $color-white;
+      color: $color-slate;
+    }
+  }
+}
+
+.footer {
+  padding: spacing(9) spacing(3) spacing(10);
+  display: grid;
+  grid-template-areas:
+    "logo"
+    "contact-info"
+    "social-media";
+  gap: spacing(5);
+  &__logo {
+    grid-area: logo;
+  }
+  &__contact-info {
+    grid-area: contact-info;
+  }
+  &__email {
+    color: $color-slate;
+    font-weight: 700;
+    line-height: 150%;
+    text-decoration: none;
+  }
+  &__social-media {
+    grid-area: social-media;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: spacing(5);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    padding: spacing(9) spacing(6) 220px;
+    background: url("../assets/images/bg-main-tablet.png");
+    background-repeat: no-repeat;
+    background-position: 80% 75%;
+    overflow: hidden;
+    .hero {
+      position: relative;
+      &__pattern {
+        width: 280px;
+        position: absolute;
+        top: -270px;
+        right: -90px;
+      }
+      &__title {
+        font-size: font-size(2);
+        margin-block-start: spacing(11);
+        max-width: 500px;
+      }
+      &__description {
+        max-width: 505px;
+        font-size: font-size(5);
+      }
+    }
+  }
+  .main {
+    padding: 0 spacing(6) spacing(12);
+    background: url("../assets/images/bg-main-tablet.png");
+    background-repeat: no-repeat;
+    background-position: left 450px top 180px;
+    position: relative;
+    .illustration {
+      background-position: left top;
+      min-height: 580px;
+      border-radius: 12px;
+      &__image {
+        max-width: 270px;
+        position: absolute;
+        top: -110px;
+        left: 28%;
+      }
+    }
+    .cta {
+      max-width: 350px;
+      padding: spacing(7);
+      border-radius: spacing(2);
+      position: absolute;
+      top: 10%;
+      right: 110px;
+      &__description {
+        font-size: font-size(5);
+      }
+    }
+  }
+  .footer {
+    padding-inline: spacing(6);
+    column-gap: 0;
+    grid-template-areas:
+      "logo logo"
+      "contact-info social-media";
+    &__social-media {
+      justify-content: end;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header {
+    padding-inline: spacing(10);
+    background: url("../assets/images/bg-main-desktop.png");
+    background-repeat: no-repeat;
+    background-position: left -300px top -350px;
+    .hero {
+      &__title {
+        max-width: 900px;
+      }
+      &__description {
+        max-width: 730px;
+      }
+    }
+  }
+  .main {
+    padding-inline: spacing(10);
+    background: url("../assets/images/bg-main-desktop.png");
+    background-repeat: no-repeat;
+    background-position: left 860px top 180px;
+    .illustration {
+      background-position: center top;
+      &__image {
+        max-width: 300px;
+        left: 26%;
+      }
+    }
+    .cta {
+      max-width: 400px;
+      &__button {
+        &:hover {
+          transition: all 0.2s linear;
+        }
+        &--dark:hover {
+          background-color: $color-cyan;
+          color: $color-slate;
+          .cta__icon {
+            transition: all 0.2s linear;
+            filter: invert(100%) sepia(72%) saturate(2%) hue-rotate(176deg)
+              brightness(106%) contrast(101%);
+          }
+        }
+        &--light:hover {
+          background-color: $color-yellow;
+        }
+      }
+    }
+  }
+  .footer {
+    grid-template-areas: "logo contact-info social-media";
+    padding-inline: spacing(10);
+    gap: spacing(8);
+    &__email:hover {
+      color: $color-orange;
+      transition: all 0.2s linear;
+    }
+    &__social-media {
+      transition: all 0.5s linear;
+    }
+    &__social-media-icon:hover {
+      transform: scale(1.2);
+      filter: invert(69%) sepia(77%) saturate(4067%) hue-rotate(328deg)
+        brightness(105%) contrast(96%);
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .header {
+    padding-inline: spacing(10) * 2;
+    padding-block-end: 250px;
+    .hero {
+      &__pattern {
+        width: fit-content;
+        top: -270px;
+        right: -160px;
+      }
+      &__title {
+        font-size: font-size(1);
+      }
+      &__description {
+        font-size: font-size(4);
+      }
+    }
+  }
+  .main {
+    padding: 0 spacing(10) * 2 spacing(12);
+    .cta {
+      max-width: 500px;
+      padding: spacing(8);
+      top: 11%;
+      right: 14%;
+      &__description {
+        font-size: font-size(4);
+      }
+    }
+  }
+  .footer {
+    padding-inline: spacing(10) * 2;
+    gap: spacing(11);
+  }
+}
